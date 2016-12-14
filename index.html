@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Reem+Kufi" rel="stylesheet">
+</head>
+<style>
+
+body {
+    font-family: sans-serif;
+    background-color: darkblue;
+}
+h1 {
+    font-family: 'Cabin Sketch', cursive;
+    background-color: cornflowerblue;
+    font-size: 45px;
+    text-align: center;
+    color: snow;
+    padding: 2px 0px;
+    border-radius: 10px;
+}
+h2 {
+    margin: 10px 40px 10px 0px;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 35px;
+    color: darkslategrey;
+    padding: 2px 0px;
+}
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+    background: whitesmoke;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+input {
+    margin: 5px 10px;
+}
+button {
+    font-size: 18px;
+    padding: 10px;
+    margin: 20px 0;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    border-bottom: 3px solid #333;
+    cursor: pointer;
+}
+input {
+ cursor: pointer;  }
+#submit {
+    background: darkslategrey}
+#reset {
+    background: darkslategrey;
+}
+#answer {
+    border: 1px dashed #ccc;
+    background: #eee;
+    padding: 10px;
+}
+</style>
+<body>
+    <div id="wrapper">
+        <h1>Which Disney Park should you go to today?</h1>
+        <p>You had better answer these questions if you ever want to find out!</p>
+        <hr style="margin-top: 15px">
+        
+        <form id="quiz">
+            <!-- Question 1 -->
+            <h2>How much time do you have?</h2>
+            <label><input type="radio" name="q1" value="c1">
+                I've got all day!
+            </label><br />
+            <label><input type="radio" name="q1" value="c2">
+                I have most of the day.
+            </label><br />
+            <label><input type="radio" name="q1" value="c3">
+                I've got half a day.
+            </label><br />
+            <label><input type="radio" name="q1" value="c4">
+                I only have a few hours, the plane leaves at 3!
+            </label><br />
+
+            <!-- Question 2 -->
+            <h2>How much of a thrill seeker are you?</h2>
+            <label><input type="radio" name="q2" value="c1">
+                I could go for a roller coaster once in a while...
+            </label><br />
+            <label><input type="radio" name="q2" value="c2">
+                I am definitely that.
+            </label><br />
+            <label><input type="radio" name="q2" value="c3">
+                I love a good adrenaline rush!
+            </label><br />
+            <label><input type="radio" name="q2" value="c4">
+                I mostly prefer to sit in slow moving vehicles and take in the sights.
+            </label><br />
+
+            <!-- Question 3 -->
+            <h2>If you weren't in Orlando, what would you most likely be doing?</h2>
+            <label><input type="radio" name="q3" value="c1">
+                Trying on my new glass slippers and a pirate hat!
+            </label><br />
+            <label><input type="radio" name="q3" value="c2">
+                Packing for my next international flight!
+            </label><br />
+            <label><input type="radio" name="q3" value="c3">
+                Watching Netflix!
+            </label><br />
+            <label><input type="radio" name="q3" value="c4">
+                Hiking, skiing, or taking a walk through nature!
+            </label><br />
+
+            <!-- Question 4 -->
+            <h2>By the end of the day, how would you like to feel?</h2>
+            <label><input type="radio" name="q4" value="c1">
+                Magical
+            </label><br />
+            <label><input type="radio" name="q4" value="c2">
+                Tired
+            </label><br />
+            <label><input type="radio" name="q4" value="c3">
+                Entertained
+            </label><br />
+            <label><input type="radio" name="q4" value="c4">
+                Terrible, for using plastic lids and straws all your life... you monster.
+            </label><br />
+
+            <!-- Question 5 -->
+            <h2>What is your idea of fine dining?</h2>
+            <label><input type="radio" name="q5" value="c1">
+                A Victorian banquet. Very classy!
+            </label><br />
+            <label><input type="radio" name="q5" value="c2">
+                Kebab with belly dancers. Oh la la!
+            </label><br />
+            <label><input type="radio" name="q5" value="c3">
+                A Retro 1950s diner where you are literally forced to eat your vegetables. No joke.
+            </label><br />
+            <label><input type="radio" name="q5" value="c4">
+                ...is that an insect?
+            </label><br />
+
+            <button type="button" id="submit" onclick="tabulateAnswers()">Submit Your Answers</button>
+            <button type="reset" id="reset" onclick="resetAnswer()">Reset</button>
+        </form>
+
+
+        <div id="answer">Your result will show up here!</div>
+    </div>
+</body>
+<script type="text/javascript">
+function tabulateAnswers(){
+    var c1score = 0;
+    var c2score = 0;
+    var c3score = 0;
+    var c4score = 0;
+
+    var choices = document.getElementsByTagName('input');
+    for (var i=0; i<choices.length; i++) {
+        if (choices[i].checked) {
+            if (choices[i].value == 'c1') {
+                c1score = c1score + 1;
+            }
+            if (choices[i].value == 'c2') {
+                c2score = c2score + 1;
+            }
+            if (choices[i].value == 'c3') {
+                c3score = c3score + 1;
+            }
+            if (choices[i].value == 'c4') {
+                c4score = c4score + 1;
+            }
+                    }
+    }
+
+    var maxScore = Math.max(c1score,c2score,c3score,c4score);
+
+    var answerBox = document.getElementById('answer');{
+        if (c1score == maxScore) {
+            answerBox.innerHTML = 'Magic Kingdom';
+        }
+        if (c2score == maxScore) {
+            answerBox.innerHTML = 'Epcot';
+        }
+        if (c3score == maxScore) {
+            answerBox.innerHTML = 'Holliwood Studios';
+        }
+        if (c4score == maxScore) {
+            answerBox.innerHTML = 'Animal Kingdom';
+        }
+    }
+}
+function resetAnswer() {
+    var answerbox = document.getElementById('answer');
+    answerbox.innerHTML = "Your result will show up here!";
+}
+</script>
+
+</html>
